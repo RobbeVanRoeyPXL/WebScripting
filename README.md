@@ -1,5 +1,5 @@
 # WebScripting
-Repository of all WebScripting excercises
+Repository of all WebScripting exercises
 
 =========================================
 
