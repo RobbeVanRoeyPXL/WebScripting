@@ -16,6 +16,8 @@ const handleClickCalculateButton = () => {
 
 const handleLoad = () => {
     document.getElementById("calculateButton").addEventListener("click", handleClickCalculateButton);
+    document.getElementsByClassName("numberInput")[0].addEventListener("input", handleClickCalculateButton);
+    document.getElementsByClassName("numberInput")[1].addEventListener("input", handleClickCalculateButton);
 };
 
 window.addEventListener("load", handleLoad);
