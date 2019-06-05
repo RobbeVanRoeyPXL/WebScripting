@@ -1,13 +1,7 @@
 class Vector {
     constructor(x, y) {
-        if (x instanceof Number) {
-            throw InputError(`${x} is not a number!`)
-        } else if (y instanceof Number) {
-            throw InputError(`${y} is not a number!`)
-        } else {
-            this.x = x;
-            this.y = y;
-        }
+        this.x = x;
+        this.y = y;
     }
 
     get x() {
@@ -15,7 +9,11 @@ class Vector {
     }
 
     set x(value) {
-        this._x = value;
+        if (typeof value !== "number") {
+            throw new InputError(`${value} is not a number!`)
+        } else {
+            this._x = value;
+        }
     }
 
     get y() {
@@ -23,30 +21,30 @@ class Vector {
     }
 
     set y(value) {
-        this._y = value;
+        if (typeof value !== "number") {
+            throw new InputError(`${value} is not a number!`)
+        } else {
+            this._y = value;
+        }
     }
 
     get length() {
-        return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.x, 2));
-    }
-
-    set length(value) {
-        this._length = value;
+        return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
     }
 
     plus(vector) {
-        if (vector instanceof Vector) {
+        if (typeof vector === 'object' || vector instanceof Vector) {
             return new Vector(this.x + vector.x, this.y + vector.y);
         } else {
-            throw InputError(`${vector} is not a Vector`);
+            throw new InputError(`${vector} is not a Vector`);
         }
     }
 
     minus(vector) {
-        if (vector instanceof Vector) {
+        if (typeof vector === 'object' || vector instanceof Vector) {
             return new Vector(this.x - vector.x, this.y - vector.y);
         } else {
-            throw InputError(`${vector} is not a Vector`);
+            throw new InputError(`${vector} is not a Vector`);
         }
     }
 
@@ -55,15 +53,32 @@ class Vector {
     }
 }
 
-class InputError extends Error {}
+class InputError extends Error {
+    constructor(message) {
+        super();
+        this.message = message;
+    }
 
-let vector = new Vector(1, 2);
-console.log(vector.length);
+    get message() {
+        return this._message;
+    }
+
+    set message(value) {
+        this._message = value;
+    }
+}
 
 try {
+    let vector = new Vector(4, 0);
+    vector.x = 1;
+    console.log(vector.length);
     console.log(vector.plus(new Vector(1, 3)));
-    console.log(vector.minus(new Vector(2, 3)));
-} catch (inputError) {
-    console.log(`An inputError with message '${inputError.message}' occurred`);
+    console.log(vector.minus(new Vector(2, 1)));
+} catch ( error ) {
+    if (error instanceof InputError) {
+        console.log(`An inputError with message '${error.message}' occurred`);
+    } else {
+        console.log(`unknown error occurred with message '${error.message}'`)
+    }
 }
 
