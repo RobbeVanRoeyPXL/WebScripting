@@ -1,3 +1,4 @@
+// Class for a bankaccount
 class Account {
     constructor(countryCode, bankNumber, firstTenPositions) {
         this.countryCode = countryCode;
@@ -30,6 +31,7 @@ class Account {
     }
 
     print() {
+        // Prints the banknumber
         let checkNumber = this.firstTenPositions % 97;
         console.log(`${this._countryCode} ${this._bankNumber} ${this._firstTenPositions.substr(0, 4)} ${this._firstTenPositions.substr(4, 4)} ${this._firstTenPositions.substr(8)}${checkNumber.length < 2 ? "0" + checkNumber : checkNumber}`);
     }
