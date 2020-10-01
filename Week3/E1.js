@@ -1,3 +1,5 @@
+// Solves the Quadratic Equation
+// ax^2+bx+c=0
 const SolveQuadraticEquation = (a, b, c) => {
     let discriminant = Math.pow(b, 2) - 4 * a * c;
     const solveSolution1 = () => (-b + Math.sqrt(discriminant)) / (2 * a);
