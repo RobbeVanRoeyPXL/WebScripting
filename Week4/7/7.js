@@ -17,7 +17,9 @@ const handleClickCalculateButton = () => {
 };
 
 const handleLoad = () => {
+    // Set a click event listener
     document.getElementById("generateOddNumbersButton").addEventListener("click", handleClickCalculateButton); // Add click eventlistener to button
 };
 
+// When the HTML page is done loading, run handleLoad
 window.addEventListener("load", handleLoad);  // On load
