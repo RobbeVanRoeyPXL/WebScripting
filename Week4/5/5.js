@@ -2,6 +2,7 @@
 
 const handleClickCalculateButton = () => {
     let outputNode = document.getElementById("output");
+    // Remove all children of the outputNode
     while (outputNode.firstChild !== null) {
         outputNode.removeChild(outputNode.firstChild);
     }
